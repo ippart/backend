@@ -1,19 +1,19 @@
 build: composer
-	@mkdir $@
-	@cp -r $(CURDIR)/vendor/opencart/opencart/upload/ $@/
-	@mv $@/admin/config-dist.php $@/admin/config.php
-	@mv $@/config-dist.php $@/config.php
-	@chmod 0755 $@/system/storage/cache/
-	@chmod 0755 $@/system/storage/logs/
-	@chmod 0755 $@/system/storage/download/
-	@chmod 0755 $@/system/storage/upload/
-	@chmod 0755 $@/system/storage/modification/
-	@chmod 0755 $@/image/
-	@chmod 0755 $@/image/cache/
-	@chmod 0755 $@/image/catalog/
-	@chmod 0755 $@/config.php
-	@chmod 0755 $@/admin/config.php
-	@cp -r $(CURDIR)/vendor $@/vendor
+	@mkdir $(CURDIR)/$@
+	@cp -r $(CURDIR)/vendor/opencart/opencart/upload/ $(CURDIR)/$@/
+	@mv $(CURDIR)/$@/admin/config-dist.php $(CURDIR)/$@/admin/config.php
+	@mv $(CURDIR)/$@/config-dist.php $(CURDIR)/$@/config.php
+	@chmod 0755 $(CURDIR)/$@/system/storage/cache/
+	@chmod 0755 $(CURDIR)/$@/system/storage/logs/
+	@chmod 0755 $(CURDIR)/$@/system/storage/download/
+	@chmod 0755 $(CURDIR)/$@/system/storage/upload/
+	@chmod 0755 $(CURDIR)/$@/system/storage/modification/
+	@chmod 0755 $(CURDIR)/$@/image/
+	@chmod 0755 $(CURDIR)/$@/image/cache/
+	@chmod 0755 $(CURDIR)/$@/image/catalog/
+	@chmod 0755 $(CURDIR)/$@/config.php
+	@chmod 0755 $(CURDIR)/$@/admin/config.php
+	@cp -r $(CURDIR)/vendor $(CURDIR)/$@/vendor
 	@docker build -t ippart/backend .
 
 composer:
