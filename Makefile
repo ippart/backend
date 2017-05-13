@@ -18,3 +18,19 @@ build: composer
 
 composer:
 	@-docker run --rm -v $(CURDIR):/data imega/composer install --ignore-platform-reqs
+
+start:
+	@docker run -d --name "ippart_db" -v $(CURDIR)/conf.d/mysql:/etc/mysql/conf.d imega/mysql
+
+	@docker pull ippart/backend
+	@docker run -d \
+		--name "ippart" \
+		--link ippart_db:ippart_db \
+		ippart/backend
+
+	@docker run -d \
+		--name "ippart_nginx" \
+		--link ippart:service \
+		-v $(CURDIR)/conf.d/nginx:/conf \
+		-p 8900:80 \
+		nginx:alpine sh -c '/usr/sbin/nginx -g daemon off; -p /app -c /conf/nginx.conf'
