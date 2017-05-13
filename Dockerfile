@@ -3,6 +3,7 @@ FROM alpine
 RUN echo "@community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
     apk add --update --no-cache --no-progress \
         libwebp \
+        php7-common@community \
         php7-fpm@community \
         php7-session@community \
         php7-curl@community \
@@ -12,6 +13,7 @@ RUN echo "@community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /et
         php7-mysqli@community \
         php7-mysqlnd@community \
         php7-pdo@community \
+        php7-openssl@community \
         php7-zip@community \
         php7-zlib@community
 
