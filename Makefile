@@ -1,8 +1,6 @@
 build: composer
 	@mkdir $(CURDIR)/$@
-	@cp -r $(CURDIR)/vendor/opencart/opencart/upload/ $(CURDIR)/$@/
-	ls -l $(CURDIR)/$@/
-	ls -l $(CURDIR)/$@/admin
+	@cp -r $(CURDIR)/vendor/opencart/opencart/upload/* $(CURDIR)/$@/
 	@mv $(CURDIR)/$@/admin/config-dist.php $(CURDIR)/$@/admin/config.php
 	@mv $(CURDIR)/$@/config-dist.php $(CURDIR)/$@/config.php
 	@chmod 0755 $(CURDIR)/$@/system/storage/cache/
