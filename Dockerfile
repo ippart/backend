@@ -11,6 +11,7 @@ RUN echo "@community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /et
         php7-mbstring@community \
         php7-mysqli@community \
         php7-mysqlnd@community \
+        php7-pdo@community \
         php7-zip@community \
         php7-zlib@community
 
