@@ -23,6 +23,12 @@ composer:
 start:
 	@docker run -d --name "ippart_db" -v $(CURDIR)/conf.d/mysql:/etc/mysql/conf.d imega/mysql
 
+	@-docker run --rm \
+		-v $(CURDIR)/sql:/sql \
+		--link ippart_db:ippart_db \
+		imega/mysql-client \
+		mysql --host=ippart_db -e "source /sql/ippart.sql"
+
 	@docker pull ippart/backend
 	@docker run -d \
 		--name "ippart" \
