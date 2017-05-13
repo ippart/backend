@@ -23,4 +23,6 @@ COPY build /app
 
 ENTRYPOINT ["/bin/sh", "/app/entrypoint/ippart.sh"]
 
+VOLUME ["/app/catalog/view", "/image"]
+
 CMD ["php-fpm7", "-F"]

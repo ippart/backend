@@ -39,5 +39,6 @@ start:
 		--name "ippart_nginx" \
 		--link ippart:service \
 		-v $(CURDIR)/conf.d/nginx:/conf \
+		--volumes-from=ippart \
 		-p 8900:80 \
 		nginx:alpine sh -c '/usr/sbin/nginx -g "daemon off;" -p /app -c /conf/nginx.conf'
