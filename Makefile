@@ -17,6 +17,4 @@ build: composer
 	@docker build -t ippart/backend .
 
 composer:
-	@-docker run --rm -v $(CURDIR):/data imega/composer install
-
-
+	@-docker run --rm -v $(CURDIR):/data imega/composer install --ignore-platform-reqs
