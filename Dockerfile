@@ -1,8 +1,11 @@
 FROM alpine
 
 RUN echo "@community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories && \
+    echo "@main http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && \
     apk add --update --no-cache --no-progress \
-        libwebp \
+        libwebp@main \
+        libressl2.5-libcrypto@main \
+        libressl2.5-libssl@main \
         php7-common@community \
         php7-fpm@community \
         php7-session@community \
