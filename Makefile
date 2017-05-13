@@ -14,6 +14,7 @@ build: composer
 	@chmod 0755 $(CURDIR)/$@/config.php
 	@chmod 0755 $(CURDIR)/$@/admin/config.php
 	@cp -r $(CURDIR)/vendor $(CURDIR)/$@/vendor
+	@cp -r $(CURDIR)/entrypoint $(CURDIR)/$@/entrypoint
 	@docker build -t ippart/backend .
 
 composer:
