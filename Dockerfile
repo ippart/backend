@@ -21,7 +21,7 @@ RUN echo "@community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /et
 
 COPY build /app
 
-ENTRYPOINT ["/bin/sh", "/app/entrypoint/ippart-dev.sh"]
+ENTRYPOINT ["/bin/sh", "/app/entrypoint/ippart.sh"]
 
 VOLUME ["/app"]
 
