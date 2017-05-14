@@ -170,4 +170,15 @@ EOF
 
 set -e
 
+chmod 777 /app/config.php
+chmod 777 /app/admin/config.php
+chmod -R 777 /app/image/
+chmod -R 777 /app/image/cache/
+chmod -R 777 /app/image/catalog/
+chmod -R 777 /app/system/storage/cache/
+chmod -R 777 /app/system/storage/logs/
+chmod -R 777 /app/system/storage/download/
+chmod -R 777 /app/system/storage/upload/
+chmod -R 777 /app/system/storage/modification/
+
 exec "$@"
