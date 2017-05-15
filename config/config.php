@@ -25,4 +25,4 @@ define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
 define('DB_DATABASE', 'ippart');
 define('DB_PORT', '3306');
-define('DB_PREFIX', 'oc_');
+define('DB_PREFIX', '');

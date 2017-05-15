@@ -1,8 +1,4 @@
--- MySQL dump 10.16  Distrib 10.1.21-MariaDB, for Linux (x86_64)
---
--- Host: s    Database: s
--- ------------------------------------------------------
--- Server version	5.5.47-MariaDB-log
+use ippart;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
