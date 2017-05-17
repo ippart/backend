@@ -51,7 +51,7 @@ deploy:
 		--name "ippart" \
 		--link ippart_db:ippart_db \
 		ippart/backend
-
+	@sleep 2
 	@docker run -d \
 		--name "ippart_nginx" \
 		--link ippart:service \
