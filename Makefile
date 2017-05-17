@@ -1,7 +1,11 @@
 build: composer
 	@mkdir $(CURDIR)/$@
 	@cp -r $(CURDIR)/vendor/opencart/opencart/upload/* $(CURDIR)/$@/
-	@rm -rf $(CURDIR)/install
+	@rm -rf $(CURDIR)/$@/install
+	@rm -rf $(CURDIR)/$@/catalog/view
+	@cp -r $(CURDIR)/view $(CURDIR)/$@/catalog/
+	@cp -r $(CURDIR)/js $(CURDIR)/$@/
+	@cp -r $(CURDIR)/css $(CURDIR)/$@/
 	@cp $(CURDIR)/config/admin/config.php $(CURDIR)/$@/admin/config.php
 	@cp $(CURDIR)/config/config.php $(CURDIR)/$@/config.php
 	@chmod 0755 $(CURDIR)/$@/system/storage/cache/
@@ -51,7 +55,6 @@ deploy:
 		--name "ippart" \
 		--link ippart_db:ippart_db \
 		ippart/backend
-	@sleep 2
 	@docker run -d \
 		--name "ippart_nginx" \
 		--link ippart:service \
