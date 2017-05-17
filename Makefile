@@ -45,7 +45,7 @@ start:
 		nginx:alpine sh -c '/usr/sbin/nginx -g "daemon off;" -p /app -c /conf/nginx.conf'
 
 deploy:
-	@-docker rm -rf ippart_nginx ippart
+	@-docker rm -fv ippart_nginx ippart
 	@docker pull ippart/backend
 	@docker run -d \
 		--name "ippart" \
