@@ -1,38 +1,80 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title><?php echo $title; ?></title>
-<base href="<?php echo $base; ?>" />
-<?php if ($description) { ?>
-<meta name="description" content="<?php echo $description; ?>" />
-<?php } ?>
-<?php if ($keywords) { ?>
-<meta name="keywords" content= "<?php echo $keywords; ?>" />
-<?php } ?>
-<script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
-<link href="catalog/view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-<script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-<link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700" rel="stylesheet" type="text/css" />
-<link href="catalog/view/theme/default/stylesheet/stylesheet.css" rel="stylesheet">
-<?php foreach ($styles as $style) { ?>
-<link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />
-<?php } ?>
-<script src="catalog/view/javascript/common.js" type="text/javascript"></script>
-<?php foreach ($links as $link) { ?>
-<link href="<?php echo $link['href']; ?>" rel="<?php echo $link['rel']; ?>" />
-<?php } ?>
-<?php foreach ($scripts as $script) { ?>
-<script src="<?php echo $script; ?>" type="text/javascript"></script>
-<?php } ?>
-<?php foreach ($analytics as $analytic) { ?>
-<?php echo $analytic; ?>
-<?php } ?>
+    <meta charset="utf-8">
+    <meta name="description" content="<?php echo $description; ?>">
+    <meta name="keywords" content= "<?php echo $keywords; ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><?php echo $title; ?></title>
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="http://ip.imega.club/styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700&amp;subset=cyrillic" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 </head>
-<body class="<?php echo $class; ?>">
+<body>
+<header class="header">
+    <div class="row">
+        <div class="large-3 small-12 columns">
+            <div class="logo">LOGO</div>
+            <div class="description-small">desc</div>
+        </div>
+        <div class="large-7 small-12 columns">
+            <div class="description text-center">
+                <p>Электронные компоненты и расходные материалы</p>
+            </div>
+            <div class="row">
+                <div class="large-4 columns">
+                    <span class="phone">8-800-100-90-86</span>
+                    <p><span class="phone-desc">Звонок по России бесплатный</span></p>
+                </div>
+                <div class="large-4 columns">
+                    <span class="email">info@ippart.com</span>
+                    <p><span class="email-desc">Все контакты</span></p>
+                </div>
+                <div class="large-4 columns">
+                    <span class="email">9:00 - 17:00</span>
+                    <p><span class="email-desc">Отдел заказов</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="large-2 columns">
+            right
+        </div>
+    </div>
+</header>
+<section class="find">
+    <div class="row">
+        <div class="large-3 columns">
+            <div class="catalog">
+                <a href=""><i class="fa fa-bars" aria-hidden="true"></i>
+                    Категории каталога</a>
+            </div>
+        </div>
+        <div class="large-7 columns">
+            <header class="hero-search-filter">
+                <div class="hero-search-filter-content">
+                    <form class="hero-search-filter-form" action="">
+                        <label for="findtext">Искать</label>
+                        <input id="findtext" class="hero-search-filter-form-find" type="text"/>
+                        <div class="divider">&nbsp;</div>
+                        <label for="findlocate">Группа</label>
+                        <input id="findlocate" class="hero-search-filter-form-near" type="text"/>
+                        <button class="button secondary"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </header>
+        </div>
+        <div class="large-2 columns">
+            <div class="cart">
+                <a href="#" class="button-badge">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span class="badge">3</span>
+                </a>
+                Корзина
+            </div>
+        </div>
+    </div>
+</section>
 <nav id="top">
   <div class="container">
     <?php echo $currency; ?>
