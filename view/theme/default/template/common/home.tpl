@@ -1,7 +1,4 @@
-<?php echo $header;
-
-var_dump($header);
-?>
+<?php echo $header;?>
 <section class="main">
     <div class="row">
         <section class="large-3 columns">
