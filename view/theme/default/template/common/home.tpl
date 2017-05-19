@@ -1,4 +1,7 @@
-<?php echo $header; ?>
+<?php echo $header;
+
+var_dump($header);
+?>
 <section class="main">
     <div class="row">
         <section class="large-3 columns">
@@ -28,6 +31,37 @@
 
                 <?php } ?>
             </ul>
+            <section class="line-top about">
+                <div class="card">
+                    <div class="card-section">
+                        <h6><a href="#">Мы участники</a></h6>
+                        <p>
+                            <img src="http://ippart.com/image/data/efind.png">
+                            <img src="http://ippart.com/image/data/einfo.png">
+                            <img src="http://ippart.com/image/data/chipfind.png">
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-section">
+                        <h6><a href="#">Мы партнеры</a></h6>
+                        <p>
+                            <img src="http://ippart.com/image/data/ruichi.png">
+                            <img src="http://ippart.com/image/data/zip.png">
+                            <img src="http://ippart.com/image/data/rexant.png">
+                            <img src="http://ippart.com/image/data/proconnect.png">
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-section">
+                        <h6><a href="#">Мы спонсоры</a></h6>
+                        <p>
+                            <img src="http://ippart.com/image/data/mehanika.png">
+                        </p>
+                    </div>
+                </div>
+            </section>
         </section>
         <section class="large-9 columns">
         </section>
