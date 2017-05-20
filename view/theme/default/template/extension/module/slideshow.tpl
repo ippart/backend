@@ -6,19 +6,21 @@
             </button>
             <button class="orbit-next"><span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;</button>
             <?php foreach ($banners as $banner) { ?>
-                <li class="is-active orbit-slide">
-                    <a href="<?php echo $banner['link']; ?>">
-                    <img class="orbit-image" src="<?php echo $banner['image']; ?>"
-                         alt="<?php echo $banner['title']; ?>">
-                    <figcaption class="orbit-caption"><?php echo $banner['title']; ?></figcaption>
-                    </a>
-                </li>
-            <?php } else { ?>
-                <li class="is-active orbit-slide">
-                    <img class="orbit-image" src="<?php echo $banner['image']; ?>"
-                         alt="<?php echo $banner['title']; ?>">
-                    <figcaption class="orbit-caption"><?php echo $banner['title']; ?></figcaption>
-                </li>
+                <?php if ($banner['link']) { ?>
+                    <li class="is-active orbit-slide">
+                        <a href="<?php echo $banner['link']; ?>">
+                        <img class="orbit-image" src="<?php echo $banner['image']; ?>"
+                             alt="<?php echo $banner['title']; ?>">
+                        <figcaption class="orbit-caption"><?php echo $banner['title']; ?></figcaption>
+                        </a>
+                    </li>
+                <?php } else { ?>
+                    <li class="is-active orbit-slide">
+                        <img class="orbit-image" src="<?php echo $banner['image']; ?>"
+                             alt="<?php echo $banner['title']; ?>">
+                        <figcaption class="orbit-caption"><?php echo $banner['title']; ?></figcaption>
+                    </li>
+                <?php } ?>
             <?php } ?>
         </ul>
         <nav class="orbit-bullets">
