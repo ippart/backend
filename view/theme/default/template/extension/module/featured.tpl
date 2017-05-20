@@ -8,7 +8,10 @@
                 <div class="card card-product">
                     <div class="card-product-img-wrapper">
                         <a class="button expanded">Добавить в корзину</a>
-                        <a href="<?php echo $product['href']; ?>"><img src="http://computube.learncs.co.uk/wp-content/uploads/2016/10/cpu.jpg"></a>
+                        <a href="<?php echo $product['href']; ?>">
+                            <img src="<?php echo $product['thumb']; ?>"
+                                 title="<?php echo $product['name']; ?>">
+                        </a>
                     </div>
                     <div class="card-section">
                         <a href="<?php echo $product['href']; ?>"><h3 class="card-product-name"><?php echo $product['name']; ?></h3></a>
