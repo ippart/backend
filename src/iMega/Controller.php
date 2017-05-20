@@ -25,7 +25,7 @@ class Controller extends \Controller
      */
     public function getEventDispatcher()
     {
-        return  $this->event;
+        return $this->event;
     }
 
     /**
@@ -33,7 +33,7 @@ class Controller extends \Controller
      */
     public function getRequest()
     {
-        return  $this->request;
+        return $this->request;
     }
 
     /**
@@ -41,7 +41,7 @@ class Controller extends \Controller
      */
     public function getResponse()
     {
-        return  $this->response;
+        return $this->response;
     }
 
     /**
@@ -49,7 +49,7 @@ class Controller extends \Controller
      */
     public function getDb()
     {
-        return  $this->db;
+        return $this->db;
     }
 
     /**
@@ -57,7 +57,7 @@ class Controller extends \Controller
      */
     public function getSession()
     {
-        return  $this->session;
+        return $this->session;
     }
 
     /**
@@ -65,7 +65,7 @@ class Controller extends \Controller
      */
     public function getCache()
     {
-        return  $this->cache;
+        return $this->cache;
     }
 
     /**
@@ -73,7 +73,7 @@ class Controller extends \Controller
      */
     public function getUrl()
     {
-        return  $this->url;
+        return $this->url;
     }
 
     /**
@@ -81,7 +81,7 @@ class Controller extends \Controller
      */
     public function getLanguage()
     {
-        return  $this->language;
+        return $this->language;
     }
 
     /**
@@ -89,6 +89,17 @@ class Controller extends \Controller
      */
     public function getDocument()
     {
-        return  $this->document;
+        return $this->document;
+    }
+
+    /**
+     * @param string $name
+     * @param array  $data
+     *
+     * @return null
+     */
+    public function render($name, array $data = [])
+    {
+        return $this->getLoader()->view($name, $data);
     }
 }

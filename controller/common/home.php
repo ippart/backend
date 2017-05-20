@@ -21,10 +21,10 @@ class ControllerCommonHome extends \iMega\Controller
             'header'         => $this->getLoader()->controller(iMega\Route\Common::HEADER),
         ];
 
-        $this->getLoader()->model(iMega\Route\Catalog::CATEGORY);
         $modelCatalogCategory = new \ModelCatalogCategory($this->registry);
 
-        $categories         = $modelCatalogCategory->getCategories(0);
+        $categories = $modelCatalogCategory->getCategories(0);
+
         $data['categories'] = [];
 
         foreach ($categories as $category) {
@@ -56,6 +56,6 @@ class ControllerCommonHome extends \iMega\Controller
             }
         }
 
-        $this->getResponse()->setOutput($this->getLoader()->view(\iMega\Route\Common::HOME, $data));
+        $this->getResponse()->setOutput($this->render(\iMega\Route\Common::HOME, $data));
     }
 }
