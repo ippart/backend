@@ -33,8 +33,10 @@
                 <span class="show-for-sr">First slide details.</span>
                 <span class="show-for-sr">Current Slide</span>
             </button>
-            <button data-slide="1"><span class="show-for-sr">Second slide details.</span></button>
-            <button data-slide="2"><span class="show-for-sr">Third slide details.</span></button>
+            <?php $i = 0; ?>
+            <?php foreach ($banners as $banner) { ?>
+                <button data-slide="<?php echo ++$i; ?>"><span class="show-for-sr"><?php echo $banner['title']; ?></span></button>
+            <?php } ?>
         </nav>
     </div>
 </section>
