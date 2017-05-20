@@ -57,6 +57,23 @@
         </section>
         <section class="large-9 columns">
             <?php echo $content_top; ?>
+            <section class="info">
+                <header class="text-center">
+                    <h4>Минимальный заказ</h4>
+                </header>
+                <div class="row">
+                    <div class="large-4 columns">
+                        <a href="about.html" class="button expanded secondary">для юр. лиц – 1500,00 руб.</a>
+                    </div>
+                    <div class="large-4 columns">
+                        <a href="about.html" class="button expanded">для физ. лиц – 300,00 руб.</a>
+                    </div>
+                    <div class="large-4 columns">
+                        <a href="about.html" class="button expanded alert">Условия доставки</a>
+                    </div>
+                </div>
+            </section>
+
         </section>
     </div>
 </section>
