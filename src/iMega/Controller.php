@@ -9,7 +9,7 @@ class Controller extends \Controller
      */
     public function getConfig()
     {
-        return $this->registry->config;
+        return $this->config;
     }
 
     /**
@@ -17,7 +17,7 @@ class Controller extends \Controller
      */
     public function getLoader()
     {
-        return $this->registry->load;
+        return $this->load;
     }
 
     /**
@@ -25,7 +25,7 @@ class Controller extends \Controller
      */
     public function getEventDispatcher()
     {
-        return  $this->registry->event;
+        return  $this->event;
     }
 
     /**
@@ -33,7 +33,7 @@ class Controller extends \Controller
      */
     public function getRequest()
     {
-        return  $this->registry->request;
+        return  $this->request;
     }
 
     /**
@@ -41,7 +41,7 @@ class Controller extends \Controller
      */
     public function getResponse()
     {
-        return  $this->registry->response;
+        return  $this->response;
     }
 
     /**
@@ -49,7 +49,7 @@ class Controller extends \Controller
      */
     public function getDb()
     {
-        return  $this->registry->db;
+        return  $this->db;
     }
 
     /**
@@ -57,7 +57,7 @@ class Controller extends \Controller
      */
     public function getSession()
     {
-        return  $this->registry->session;
+        return  $this->session;
     }
 
     /**
@@ -65,7 +65,7 @@ class Controller extends \Controller
      */
     public function getCache()
     {
-        return  $this->registry->cache;
+        return  $this->cache;
     }
 
     /**
@@ -73,7 +73,7 @@ class Controller extends \Controller
      */
     public function getUrl()
     {
-        return  $this->registry->url;
+        return  $this->url;
     }
 
     /**
@@ -81,7 +81,7 @@ class Controller extends \Controller
      */
     public function getLanguage()
     {
-        return  $this->registry->language;
+        return  $this->language;
     }
 
     /**
@@ -89,6 +89,6 @@ class Controller extends \Controller
      */
     public function getDocument()
     {
-        return  $this->registry->document;
+        return  $this->document;
     }
 }
