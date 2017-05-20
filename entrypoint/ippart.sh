@@ -173,6 +173,5 @@ chmod -R 777 /app/system/storage/logs/
 chmod -R 777 /app/system/storage/download/
 chmod -R 777 /app/system/storage/upload/
 chmod -R 777 /app/system/storage/modification/
-mv /app/vendor /
 
 exec "$@"

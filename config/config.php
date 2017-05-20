@@ -1,4 +1,7 @@
 <?php
+
+require __DIR__.'/vendor/autoload.php';
+
 // HTTP
 define('HTTP_SERVER', 'http://new.ippart.com/');
 
