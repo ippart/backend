@@ -4,7 +4,6 @@ class ControllerCommonHome extends \iMega\Controller
 {
     public function index()
     {
-        $this->getLoader()->model(iMega\Route\Catalog::CATEGORY);
         $this->getDocument()->setTitle($this->getConfig()->get('config_meta_title'));
         $this->getDocument()->setDescription($this->getConfig()->get('config_meta_description'));
         $this->getDocument()->setKeywords($this->getConfig()->get('config_meta_keyword'));
@@ -13,7 +12,7 @@ class ControllerCommonHome extends \iMega\Controller
             $this->getDocument()->addLink($this->getConfig()->get('config_url'), 'canonical');
         }
 
-        $data               = [
+        $data = [
             'column_left'    => $this->getLoader()->controller(iMega\Route\Common::COLUMN_LEFT),
             'column_right'   => $this->getLoader()->controller(iMega\Route\Common::COLUMN_RIGHT),
             'content_top'    => $this->getLoader()->controller(iMega\Route\Common::CONTENT_TOP),
@@ -22,7 +21,10 @@ class ControllerCommonHome extends \iMega\Controller
             'header'         => $this->getLoader()->controller(iMega\Route\Common::HEADER),
         ];
 
-        $categories         = (new \ModelCatalogCategory($this->registry))->getCategories(0);
+        $this->getLoader()->model(iMega\Route\Catalog::CATEGORY);
+        $modelCatalogCategory = new \ModelCatalogCategory($this->registry);
+
+        $categories         = $modelCatalogCategory->getCategories(0);
         $data['categories'] = [];
 
         foreach ($categories as $category) {
@@ -30,7 +32,7 @@ class ControllerCommonHome extends \iMega\Controller
                 // Level 2
                 $children_data = [];
 
-                $children = (new \ModelCatalogCategory($this->registry))->getCategories($category['category_id']);
+                $children = $modelCatalogCategory->getCategories($category['category_id']);
                 foreach ($children as $child) {
                     $children_data[] = [
                         'name' => $child['name'],
