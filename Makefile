@@ -21,6 +21,8 @@ build: composer
 	@chmod 0755 $(CURDIR)/$@/image/catalog/
 	@cp -r $(CURDIR)/vendor $(CURDIR)/$@/vendor
 	@cp -r $(CURDIR)/entrypoint $(CURDIR)/$@/entrypoint
+	@cp -r $(CURDIR)/composer-map.json $(CURDIR)/$@/composer.json
+	@-docker run --rm -v $(CURDIR)/$@:/data imega/composer dump-autoload
 	@docker build -t ippart/backend .
 
 composer:

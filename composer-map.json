@@ -1,0 +1,8 @@
+{
+  "autoload": {
+    "classmap": ["catalog/"],
+    "psr-4": {
+      "iMega\\": "src/iMega"
+    }
+  }
+}
