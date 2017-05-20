@@ -1,5 +1,10 @@
 {
-    "require": {
-        "opencart/opencart": "2.3.0.2"
+  "require": {
+    "opencart/opencart": "2.3.0.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "iMega\\": "src/iMega"
     }
+  }
 }

@@ -4,6 +4,8 @@ build: composer
 	@rm -rf $(CURDIR)/$@/install
 	@rm -rf $(CURDIR)/$@/catalog/view
 	@cp -r $(CURDIR)/view $(CURDIR)/$@/catalog/
+	@rm -rf $(CURDIR)/$@/catalog/controller
+	@cp -r $(CURDIR)/controller $(CURDIR)/$@/catalog/
 	@cp -r $(CURDIR)/js $(CURDIR)/$@/
 	@cp -r $(CURDIR)/css $(CURDIR)/$@/
 	@cp $(CURDIR)/config/admin/config.php $(CURDIR)/$@/admin/config.php
