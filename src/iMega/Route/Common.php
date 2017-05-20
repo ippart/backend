@@ -1,6 +1,6 @@
 <?php
 
-namespace iMega\Template;
+namespace iMega\Route;
 
 final class Common
 {

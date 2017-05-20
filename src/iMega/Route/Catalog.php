@@ -1,6 +1,6 @@
 <?php
 
-namespace iMega\Model;
+namespace iMega\Route;
 
 final class Catalog
 {
