@@ -13,9 +13,7 @@
                             <?php foreach (array_chunk($category['children'], ceil(count($category['children']) / $category['column'])) as $children) { ?>
                             <ul class="menu vertical nested">
                                 <?php foreach ($children as $child) { ?>
-                                    <li><a href="#">Головки динамические (Громкоговорители)</a></li>
-                                    <li><a href="#">Излучатели звука (Зуммер)</a></li>
-                                    <li><a href="#">Клеммы акустические</a></li>
+                                    <li><a href="<?php echo $child['href']; ?>"><?php echo $child['name']; ?></li>
                                 <?php } ?>
                             </ul>
                             <?php } ?>
