@@ -4,6 +4,7 @@ class ControllerCommonHome extends \iMega\Controller
 {
     public function index()
     {
+        $this->getLoader()->model(iMega\Route\Catalog::CATEGORY);
         $this->getDocument()->setTitle($this->getConfig()->get('config_meta_title'));
         $this->getDocument()->setDescription($this->getConfig()->get('config_meta_description'));
         $this->getDocument()->setKeywords($this->getConfig()->get('config_meta_keyword'));
