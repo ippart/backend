@@ -1,6 +1,13 @@
 <?php
-class ControllerProductCategory extends Controller {
-	public function index() {
+
+use iMega\Component\Breadcrumb;
+
+class ControllerProductCategory extends \iMega\Controller
+{
+    protected $breadcrumbs = [];
+
+    public function index()
+    {
 		$this->load->language('product/category');
 
 		$this->load->model('catalog/category');
@@ -39,12 +46,8 @@ class ControllerProductCategory extends Controller {
 			$limit = $this->config->get($this->config->get('config_theme') . '_product_limit');
 		}
 
-		$data['breadcrumbs'] = array();
-
-		$data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/home')
-		);
+        $serviceBreadcrumb = new \iMega\Service\Breadcrumb($this->getLoader());
+        $serviceBreadcrumb->append(new Breadcrumb($this->getLanguage()->get('text_home'), $this->getUrl()->link('common/home')));
 
 		if (isset($this->request->get['path'])) {
 			$url = '';
@@ -76,12 +79,12 @@ class ControllerProductCategory extends Controller {
 
 				$category_info = $this->model_catalog_category->getCategory($path_id);
 
-				if ($category_info) {
-					$data['breadcrumbs'][] = array(
-						'text' => $category_info['name'],
-						'href' => $this->url->link('product/category', 'path=' . $path . $url)
-					);
-				}
+                if ($category_info) {
+                    $serviceBreadcrumb->append(new Breadcrumb(
+                        $category_info['name'],
+                        $this->url->link('product/category', 'path=' . $path . $url)
+                    ));
+                }
 			}
 		} else {
 			$category_id = 0;
@@ -115,11 +118,10 @@ class ControllerProductCategory extends Controller {
 			$data['button_list'] = $this->language->get('button_list');
 			$data['button_grid'] = $this->language->get('button_grid');
 
-			// Set the last category breadcrumb
-			$data['breadcrumbs'][] = array(
-				'text' => $category_info['name'],
-				'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'])
-			);
+            $serviceBreadcrumb->append(new Breadcrumb(
+                $category_info['name'],
+                $this->url->link('product/category', 'path=' . $this->request->get['path'])
+            ));
 
 			if ($category_info['image']) {
 				$data['thumb'] = $this->model_tool_image->resize($category_info['image'], $this->config->get($this->config->get('config_theme') . '_image_category_width'), $this->config->get($this->config->get('config_theme') . '_image_category_height'));
@@ -374,6 +376,7 @@ class ControllerProductCategory extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
+            $data['breadcrumb'] = $serviceBreadcrumb->render();
 			$this->response->setOutput($this->load->view('product/category', $data));
 		} else {
 			$url = '';
@@ -402,10 +405,9 @@ class ControllerProductCategory extends Controller {
 				$url .= '&limit=' . $this->request->get['limit'];
 			}
 
-			$data['breadcrumbs'][] = array(
-				'text' => $this->language->get('text_error'),
-				'href' => $this->url->link('product/category', $url)
-			);
+            $serviceBreadcrumb->append(
+                new Breadcrumb($this->language->get('text_error'), $this->url->link('product/category', $url))
+            );
 
 			$this->document->setTitle($this->language->get('text_error'));
 

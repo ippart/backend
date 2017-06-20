@@ -1,10 +1,17 @@
 <?php echo $header; ?>
+<section class="main">
+    <div class="row">
+        <section class="large-3 columns">
+
+        </section>
+        <section class="large-9 columns">
+            <nav class="large-12 -mg-t-lg">
+                <?php echo $breadcrumb; ?>
+            </nav>
+        </section>
+    </div>
+</section>
 <div class="container">
-  <ul class="breadcrumb">
-    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-    <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
-    <?php } ?>
-  </ul>
   <div class="row"><?php echo $column_left; ?>
     <?php if ($column_left && $column_right) { ?>
     <?php $class = 'col-sm-6'; ?>

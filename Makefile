@@ -67,3 +67,34 @@ deploy:
 		--volumes-from=ippart \
 		-p 8900:80 \
 		nginx:alpine sh -c '/usr/sbin/nginx -g "daemon off;" -p /app -c /conf/nginx.conf'
+
+clean:
+	@-docker rm -fv ippart_nginx ippart ippart_db
+
+dev:
+	@docker run -d --name "ippart_db" -v $(CURDIR)/conf.d/mysql:/etc/mysql/conf.d imega/mysql
+	@-docker run --rm \
+		-v $(CURDIR)/sql:/sql \
+		--link ippart_db:ippart_db \
+		imega/mysql-client \
+		mysql --host=ippart_db -e "source /sql/ippart.sql"
+	@-docker run --rm \
+		-v $(CURDIR)/sql:/sql \
+		--link ippart_db:ippart_db \
+		imega/mysql-client \
+		mysql --host=ippart_db -e "source /sql/dump.sql"
+	@docker pull ippart/backend
+	@docker run -d \
+		--name "ippart" \
+		-v $(CURDIR)/view:/app/catalog/view \
+		-v $(CURDIR)/controller:/app/catalog/controller \
+		-v $(CURDIR)/src:/app/src \
+		--link ippart_db:ippart_db \
+		ippart/backend
+	@docker run -d \
+		--name "ippart_nginx" \
+		--link ippart:service \
+		-v $(CURDIR)/conf.d/nginx:/conf \
+		--volumes-from=ippart \
+		-p 80:80 \
+		nginx:alpine sh -c '/usr/sbin/nginx -g "daemon off;" -p /app -c /conf/nginx.conf'
