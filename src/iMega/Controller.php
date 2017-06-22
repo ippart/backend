@@ -13,6 +13,14 @@ class Controller extends \Controller
     }
 
     /**
+     * @return \Pimple\Container
+     */
+    public function getContainer()
+    {
+        return $this->registry->get('container');
+    }
+
+    /**
      * @return \Loader
      */
     public function getLoader()

@@ -3,7 +3,14 @@
         <div class="card-product-img-wrapper">
             <a class="button expanded">Добавить в корзину</a>
             <a href="<?php echo $product->getHref(); ?>">
-                <img src="<?php echo $product->getThumb(); ?>"
+<?php
+    $thumb = $resizer->resize(
+        $product->getImage(),
+        200,
+        200
+    );
+?>
+                <img src="<?php echo $thumb ?>"
                      title="<?php echo $product->getName(); ?>">
             </a>
         </div>

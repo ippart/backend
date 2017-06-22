@@ -1,11 +1,11 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'http://new.ippart.com/admin/');
-define('HTTP_CATALOG', 'http://new.ippart.com/');
+define('HTTP_SERVER', 'http://10.0.3.94/admin/');
+define('HTTP_CATALOG', 'http://10.0.3.94/');
 
 // HTTPS
-define('HTTPS_SERVER', 'http://new.ippart.com/admin/');
-define('HTTPS_CATALOG', 'http://new.ippart.com/');
+define('HTTPS_SERVER', 'http://10.0.3.94/admin/');
+define('HTTPS_CATALOG', 'http://10.0.3.94/');
 
 // DIR
 define('DIR_APPLICATION', '/app/admin/');

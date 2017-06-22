@@ -1,6 +1,7 @@
 <?php
 
 use iMega\Component\Breadcrumb;
+use iMega\Service;
 
 class ControllerProductCategory extends \iMega\Controller
 {
@@ -11,7 +12,11 @@ class ControllerProductCategory extends \iMega\Controller
         $this->getLoader()->language(\iMega\Route\Product::CATEGORY);
         $catalogCategory = new \ModelCatalogCategory($this->registry);
         $catalogProduct  = new \ModelCatalogProduct($this->registry);
-        $toolImage       = new \ModelToolImage($this->registry);
+
+        /**
+         * @var \ModelToolImage $toolImage
+         */
+        $toolImage = $this->getContainer()->offsetGet(Service::RESIZER);
 
         $serviceBreadcrumb = new \iMega\Service\Breadcrumb($this->getLoader());
         $serviceBreadcrumb->append(
@@ -27,7 +32,7 @@ class ControllerProductCategory extends \iMega\Controller
             'header'         => $this->getLoader()->controller(iMega\Route\Common::HEADER),
         ];
 
-        $l = $this->getConfig()->get($this->getConfig()->get('config_theme') . '_product_limit');
+        $l       = $this->getConfig()->get($this->getConfig()->get('config_theme') . '_product_limit');
         $filter1 = (new \iMega\Request\RequestToFilter($l))->invoke($this->getRequest());
 
         if (isset($this->request->get['filter'])) {
@@ -199,10 +204,8 @@ class ControllerProductCategory extends \iMega\Controller
             $catalog->setDescriptionLength(
                 $this->getConfig()->get($this->getConfig()->get('config_theme') . '_product_description_length')
             );
-            $items = $catalog->getProducts($filter1);
+            $items           = $catalog->getProducts($filter1);
             $data['catalog'] = $catalog->render($items);
-
-
 
             $product_total = $catalogProduct->getTotalProducts($filter_data);
             $results       = $catalogProduct->getProducts($filter_data);
@@ -222,7 +225,7 @@ class ControllerProductCategory extends \iMega\Controller
                     );
                 }
 
-                if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
+                if ($this->customer->isLogged() || !$this->getConfig()->get('config_customer_price')) {
                     $price = $this->currency->format(
                         $this->tax->calculate(
                             $result['price'],

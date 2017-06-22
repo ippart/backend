@@ -1,6 +1,7 @@
 {
   "require": {
-    "opencart/opencart": "2.3.0.2"
+    "opencart/opencart": "2.3.0.2",
+    "pimple/pimple": "3.0.2"
   },
   "autoload": {
     "psr-4": {

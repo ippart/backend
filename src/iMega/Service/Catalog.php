@@ -55,6 +55,8 @@ class Catalog
             ]
         );
 
+        $toolImage = new \ModelToolImage($this->registry);
+
         $ret = [];
         foreach ($items as $item) {
             $m = new Manufacturer();
@@ -120,12 +122,15 @@ class Catalog
     public function render(array $products)
     {
         $raw = '';
+        $toolImage = new \ModelToolImage($this->registry);
         foreach ($products as $product) {
             $raw .= $this->loader->view(
                 'catalog/cart',
                 [
                     'product'           => $product,
                     'descriptionLength' => $this->getDescriptionLength(),
+                    'config'            => $this->registry->get('config'),
+                    'resizer'           => $toolImage,
                 ]
             );
         }

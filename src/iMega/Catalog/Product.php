@@ -79,7 +79,7 @@ class Product
     /**
      * @var string
      */
-    protected $image = '';
+    protected $image = 'placeholder.png';
     /**
      * @var Manufacturer
      */
@@ -476,6 +476,9 @@ class Product
      */
     public function getImage()
     {
+        if (empty($this->image)) {
+            return 'placeholder.png';
+        }
         return $this->image;
     }
 

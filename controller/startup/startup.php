@@ -1,6 +1,11 @@
 <?php
-class ControllerStartupStartup extends Controller {
-	public function index() {
+
+use iMega\Service;
+
+class ControllerStartupStartup extends \iMega\Controller
+{
+    public function index()
+    {
 		// Store
 		if ($this->request->server['HTTPS']) {
 			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "store WHERE REPLACE(`ssl`, 'www.', '') = '" . $this->db->escape('https://' . str_replace('www.', '', $_SERVER['HTTP_HOST']) . rtrim(dirname($_SERVER['PHP_SELF']), '/.\\') . '/') . "'");
@@ -188,6 +193,15 @@ class ControllerStartupStartup extends Controller {
 		$this->registry->set('encryption', new Encryption($this->config->get('config_encryption')));
 		
 		// OpenBay Pro
-		$this->registry->set('openbay', new Openbay($this->registry));					
-	}
+		$this->registry->set('openbay', new Openbay($this->registry));
+        $container = [
+            Service::REGISTRY => function () {
+                return $this->registry;
+            },
+            Service::RESIZER => function($c) {
+                return new \ModelToolImage($c[Service::REGISTRY]);
+            },
+        ];
+        $this->registry->set('container', new \Pimple\Container($container));
+    }
 }

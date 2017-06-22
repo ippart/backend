@@ -24,6 +24,7 @@ build: composer
 	@cp -r $(CURDIR)/composer-map.json $(CURDIR)/$@/composer.json
 	@-docker run --rm -v $(CURDIR)/$@:/data imega/composer dump-autoload
 	@docker build -t ippart/backend .
+	@rm -rf $(CURDIR)/$@
 
 composer:
 	@-docker run --rm -v $(CURDIR):/data imega/composer install --ignore-platform-reqs
@@ -70,6 +71,7 @@ deploy:
 
 clean:
 	@-docker rm -fv ippart_nginx ippart ippart_db
+	@-docker rmi ippart/backend
 
 dev:
 	@docker run -d --name "ippart_db" -v $(CURDIR)/conf.d/mysql:/etc/mysql/conf.d imega/mysql
@@ -83,7 +85,6 @@ dev:
 		--link ippart_db:ippart_db \
 		imega/mysql-client \
 		mysql --host=ippart_db -e "source /sql/dump.sql"
-	@docker pull ippart/backend
 	@docker run -d \
 		--name "ippart" \
 		-v $(CURDIR)/view:/app/catalog/view \
