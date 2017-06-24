@@ -74,8 +74,8 @@ clean:
 	@-docker rmi ippart/backend
 
 dev:
-	@docker run -d --name "ippart_db" -v $(CURDIR)/conf.d/mysql:/etc/mysql/conf.d imega/mysql
-	@-docker run --rm \
+	@docker run -d -p 3306:3306 --name "ippart_db" -v $(CURDIR)/conf.d/mysql:/etc/mysql/conf.d imega/mysql
+	@docker run --rm \
 		-v $(CURDIR)/sql:/sql \
 		--link ippart_db:ippart_db \
 		imega/mysql-client \

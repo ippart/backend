@@ -1,0 +1,24 @@
+<ul class="vertical menu accordion-menu" data-accordion-menu>
+    {% for item in categories %}
+        {% if item['children'] %}
+            <li>
+                <a href="{{ url('product/category', 'path=' ~ item['id'])|raw }}">{{ item['name']|raw }}</a>
+                {% set active = '' %}
+                {% if item['id'] == current %}
+                    {% set active = 'is-active' %}
+                {% endif %}
+                <ul class="menu vertical nested {{ active }}">
+                    {% for child in item['children'] %}
+                        <li>
+                            <a href="{{ url('product/category', 'path=' ~ item['id'] ~ '_' ~ child['id'])|raw }}">{{ child['name']|raw }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% else %}
+            <li>
+                <a href="{{ url('product/category', 'path=' ~ item['id'])|raw }}">{{ item['name']|raw }}</a>
+            </li>
+        {% endif %}
+    {% endfor %}
+</ul>

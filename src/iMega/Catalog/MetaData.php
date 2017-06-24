@@ -2,7 +2,7 @@
 
 namespace iMega\Catalog;
 
-class MetaProduct
+class MetaData
 {
     /**
      * @var string

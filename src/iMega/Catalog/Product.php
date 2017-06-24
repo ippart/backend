@@ -29,7 +29,7 @@ class Product
      */
     protected $href = '';
     /**
-     * @var MetaProduct
+     * @var MetaData
      */
     protected $meta = null;
     /**
@@ -280,7 +280,7 @@ class Product
     }
 
     /**
-     * @return MetaProduct
+     * @return MetaData
      */
     public function getMeta()
     {
@@ -288,9 +288,9 @@ class Product
     }
 
     /**
-     * @param MetaProduct $meta
+     * @param MetaData $meta
      */
-    public function setMeta(MetaProduct $meta)
+    public function setMeta(MetaData $meta)
     {
         $this->meta = $meta;
     }

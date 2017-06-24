@@ -3,10 +3,10 @@
 require __DIR__.'/vendor/autoload.php';
 
 // HTTP
-define('HTTP_SERVER', 'http://10.0.3.94/');
+define('HTTP_SERVER', 'http://new.ippart.com/');
 
 // HTTPS
-define('HTTPS_SERVER', 'http://10.0.3.94/');
+define('HTTPS_SERVER', 'http://new.ippart.com/');
 
 // DIR
 define('DIR_APPLICATION', '/app/catalog/');

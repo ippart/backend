@@ -1,0 +1,20 @@
+<div class="column column-block">
+    <div class="card card-product">
+        <div class="card-product-img-wrapper">
+            <a class="button expanded">Добавить в корзину</a>
+            <a href="{{ url('product/category', 'path=' ~ product.id)|raw }}">
+                <img src="{{ url('image', product.image, {width: 200, height: 200}) }}"
+                     title="{{ product.name|raw }}">
+            </a>
+        </div>
+        <div class="card-section">
+            <a href="{{ url('product/category', 'path=' ~ product.id)|raw }}">
+                <h3 class="card-product-name">{{ product.name|raw }}</h3>
+            </a>
+            {% if product.price %}
+                <h5 class="card-product-price">{{ product.price }}</h5>
+            {% endif %}
+            <p class="card-product-description">{{ product.description|short }}</p>
+        </div>
+    </div>
+</div>

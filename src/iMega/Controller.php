@@ -108,6 +108,11 @@ class Controller extends \Controller
      */
     public function render($name, array $data = [])
     {
-        return $this->getLoader()->view($name, $data);
+        /**
+         * @var \Twig_Environment $render
+         */
+        $render = $this->getContainer()->offsetGet(Service::RENDER);
+        return $render->render($name, $data);
+        //return $this->getLoader()->view($name, $data);
     }
 }

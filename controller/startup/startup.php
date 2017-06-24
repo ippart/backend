@@ -195,11 +195,33 @@ class ControllerStartupStartup extends \iMega\Controller
 		// OpenBay Pro
 		$this->registry->set('openbay', new Openbay($this->registry));
         $container = [
+            Service::CONFIG => function() {
+                return $this->getConfig();
+            },
             Service::REGISTRY => function () {
                 return $this->registry;
             },
             Service::RESIZER => function($c) {
                 return new \ModelToolImage($c[Service::REGISTRY]);
+            },
+            Service::RENDER => function($c) {
+                $l = new Twig_Loader_Filesystem(DIR_TEMPLATE . 'default/template');
+                $t = new Twig_Environment($l, ['debug' => true,]);
+                //$t = new Twig_Environment($l, ['cache' => DIR_CACHE]);
+                $t->addExtension(new \nochso\HtmlCompressTwig\Extension());
+                $t->addExtension(new \iMega\Twig\Extension($c));
+                $t->addExtension(new \iMega\Catalog\Twig\Extension($c));
+                $t->addExtension(new Twig_Extension_Debug());
+                return $t;
+            },
+            Service::REQUEST => function() {
+                return $this->getRequest();
+            },
+            Service::CATALOG => function($c) {
+                return new iMega\Service\Catalog($c);
+            },
+            Service::URL_GENERATOR => function() {
+                return $this->getUrl();
             },
         ];
         $this->registry->set('container', new \Pimple\Container($container));

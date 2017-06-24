@@ -200,12 +200,19 @@ class ControllerProductCategory extends \iMega\Controller
                 'limit'              => $limit
             );
 
-            $catalog = new \iMega\Service\Catalog($this->registry, $this->getLoader());
-            $catalog->setDescriptionLength(
+            /**
+             * @var \iMega\Service\Catalog $catalog
+             */
+            $catalog = $this->getContainer()->offsetGet(Service::CATALOG);
+
+            /*$catalog->setDescriptionLength(
                 $this->getConfig()->get($this->getConfig()->get('config_theme') . '_product_description_length')
-            );
-            $items           = $catalog->getProducts($filter1);
-            $data['catalog'] = $catalog->render($items);
+            );*/
+
+            $filter1->setCategoryId($catalog->getCurrentCategory());
+
+            $items    = $catalog->getProducts($filter1);
+            $products = $catalog->renderProducts($items);
 
             $product_total = $catalogProduct->getTotalProducts($filter_data);
             $results       = $catalogProduct->getProducts($filter_data);
@@ -486,7 +493,9 @@ class ControllerProductCategory extends \iMega\Controller
             $data['continue'] = $this->url->link('common/home');
 
             $data['breadcrumb'] = $serviceBreadcrumb->render();
-            $this->response->setOutput($this->load->view('product/category', $data));
+
+            //$this->response->setOutput($this->load->view('product/category', $data));
+            $this->response->setOutput($this->render('catalog/category.html.twig', ['products' => $products]));
         } else {
             $url = '';
 
