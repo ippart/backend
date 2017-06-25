@@ -21,6 +21,12 @@ class Extension extends \Twig_Extension
     {
         return [
             new \Twig_SimpleFunction('url', [$this, 'url']),
+            new \Twig_SimpleFunction('breadcrumbs', [$this, 'breadcrumbs'],
+                [
+                    'needs_environment' => true,
+                    'is_safe'           => array('html'),
+                ]
+            ),
         ];
     }
 
@@ -28,6 +34,7 @@ class Extension extends \Twig_Extension
     {
         return [
             new \Twig_SimpleFilter('short', [$this, 'short']),
+            new \Twig_SimpleFilter('trans', [$this, 'trans']),
         ];
     }
 
@@ -59,6 +66,26 @@ class Extension extends \Twig_Extension
                 0,
                 $c->get($c->get('config_theme') . '_product_description_length')
             ) . '..';
+    }
+
+    public function breadcrumbs(\Twig_Environment $env)
+    {
+        /**
+         * @var \iMega\Service\Breadcrumb $b
+         */
+        $b = $this->c->offsetGet(Service::BREADCRUMB);
+
+        return $env->render('components/navigation/breadcrumb.html.twig', ['breadcrumbs' => $b->getItems()]);
+    }
+
+    public function trans($value)
+    {
+        /**
+         * @var \Language $l
+         */
+        $l = $this->c->offsetGet(Service::TRANSLATE);
+
+        return $l->get($value);
     }
 
     public function getName()

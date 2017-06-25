@@ -36,7 +36,7 @@ class Extension extends \Twig_Extension
          */
         $c = $this->c->offsetGet(Service::CATALOG);
 
-        $categoryId = $c->getCurrentCategory();
+        $categoryId = $c->getCurrentCategory()->getId();
 
         $data = $c->getCategories($categoryId);
 

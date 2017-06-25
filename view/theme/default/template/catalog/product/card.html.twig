@@ -8,7 +8,7 @@
             </a>
         </div>
         <div class="card-section">
-            <a href="{{ url('product/category', 'path=' ~ product.id)|raw }}">
+            <a href="{{ url('product/product', 'product_id=' ~ product.id)|raw }}">
                 <h3 class="card-product-name">{{ product.name|raw }}</h3>
             </a>
             {% if product.price %}

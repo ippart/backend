@@ -2,22 +2,47 @@
 
 namespace iMega\Service;
 
-use iMega\LoaderInterface;
+use iMega\Service;
+use Pimple\Container;
 
 class Breadcrumb
 {
     /**
-     * @var LoaderInterface
-     */
-    private $loader;
-    /**
      * @var array []iMega\Component\Breadcrumb
      */
     private $items = [];
+    /**
+     * @var Container
+     */
+    private $c;
 
-    public function __construct($loader)
+    /**
+     * Breadcrumb constructor.
+     *
+     * @param Container $c
+     */
+    public function __construct(Container $c)
     {
-        $this->loader = $loader;
+        $this->c = $c;
+
+        /**
+         * @var \Request $r
+         */
+        $r = $this->c->offsetGet(Service::REQUEST);
+
+        if (isset($r->get['path'])) {
+            /**
+             * @var \iMega\Service\Catalog $catalog
+             */
+            $catalog = $this->c->offsetGet(Service::CATALOG);
+
+            $items = explode('_', $r->get['path']);
+            foreach ($items as $k => $v) {
+                $path = implode('_', array_slice($items, 0, $k + 1));
+                $cat  = $catalog->getCategory((int)$v);
+                $this->append(new \iMega\Component\Breadcrumb($cat->getName(), 'product/category', 'path=' . $path));
+            }
+        }
     }
 
     public function append(\iMega\Component\Breadcrumb $b)
@@ -26,10 +51,10 @@ class Breadcrumb
     }
 
     /**
-     * @return string
+     * @return \array[] \iMega\Component\Breadcrumb
      */
-    public function render()
+    public function getItems()
     {
-        return $this->loader->view('components/navigation/breadcrumb', ['breadcrumbs' => $this->items]);
+        return $this->items;
     }
 }

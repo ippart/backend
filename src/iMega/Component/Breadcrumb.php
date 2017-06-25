@@ -4,19 +4,33 @@ namespace iMega\Component;
 
 class Breadcrumb
 {
-    protected $title;
-    protected $url;
+    /**
+     * @var string
+     */
+    private $title;
+
+    /**
+     * @var string
+     */
+    private $route;
+
+    /**
+     * @var string
+     */
+    private $path;
 
     /**
      * Breadcrumb constructor.
      *
      * @param string $title
-     * @param string $url
+     * @param string $route
+     * @param string $path
      */
-    public function __construct($title, $url)
+    public function __construct($title, $route, $path = '')
     {
         $this->title = $title;
-        $this->url   = $url;
+        $this->route = $route;
+        $this->path  = $path;
     }
 
     /**
@@ -30,8 +44,16 @@ class Breadcrumb
     /**
      * @return string
      */
-    public function getUrl()
+    public function getRoute()
     {
-        return $this->url;
+        return $this->route;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPath()
+    {
+        return $this->path;
     }
 }

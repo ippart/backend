@@ -191,7 +191,7 @@ class Catalog
     }
 
     /**
-     * @return int
+     * @return Category
      */
     public function getCurrentCategory()
     {
@@ -206,10 +206,10 @@ class Catalog
         }
         $c = $this->getCategory($categoryId);
         if (null !== $c) {
-            return $c->getId();
+            return $c;
         }
 
-        return 0;
+        return new Category();
     }
 
     /**
@@ -226,7 +226,7 @@ class Catalog
         $m = new \ModelCatalogCategory($this->c->offsetGet(Service::REGISTRY));
 
         $data = $m->getCategory((int) $id);
-        
+
         $meta = new MetaData();
         $meta->setTitle($data['meta_title']);
         $meta->setDescription($data['meta_description']);

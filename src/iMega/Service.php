@@ -11,4 +11,6 @@ final class Service
     const CATALOG = 'catalog';
     const URL_GENERATOR = 'url_generator';
     const CONFIG = 'config';
+    const BREADCRUMB = 'breadcrumb';
+    const TRANSLATE = 'translate';
 }

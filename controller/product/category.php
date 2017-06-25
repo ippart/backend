@@ -18,11 +18,6 @@ class ControllerProductCategory extends \iMega\Controller
          */
         $toolImage = $this->getContainer()->offsetGet(Service::RESIZER);
 
-        $serviceBreadcrumb = new \iMega\Service\Breadcrumb($this->getLoader());
-        $serviceBreadcrumb->append(
-            new Breadcrumb($this->getLanguage()->get('text_home'), $this->getUrl()->link('common/home'))
-        );
-
         $data = [
             'column_left'    => $this->getLoader()->controller(iMega\Route\Common::COLUMN_LEFT),
             'column_right'   => $this->getLoader()->controller(iMega\Route\Common::COLUMN_RIGHT),
@@ -60,7 +55,7 @@ class ControllerProductCategory extends \iMega\Controller
         }
 
         if (isset($this->request->get['limit'])) {
-            $limit = (int) $this->request->get['limit'];
+            $limit = (int)$this->request->get['limit'];
         } else {
             $limit = $this->config->get($this->config->get('config_theme') . '_product_limit');
         }
@@ -82,26 +77,18 @@ class ControllerProductCategory extends \iMega\Controller
 
             $path = '';
 
-            $parts = explode('_', (string) $this->request->get['path']);
+            $parts = explode('_', (string)$this->request->get['path']);
 
-            $category_id = (int) array_pop($parts);
+            $category_id = (int)array_pop($parts);
 
             foreach ($parts as $path_id) {
                 if (!$path) {
-                    $path = (int) $path_id;
+                    $path = (int)$path_id;
                 } else {
-                    $path .= '_' . (int) $path_id;
+                    $path .= '_' . (int)$path_id;
                 }
 
                 $category_info = $catalogCategory->getCategory($path_id);
-
-                if ($category_info) {
-                    $serviceBreadcrumb->append(
-                        new Breadcrumb(
-                            $category_info['name'], $this->url->link('product/category', 'path=' . $path . $url)
-                        )
-                    );
-                }
             }
         } else {
             $category_id = 0;
@@ -137,12 +124,6 @@ class ControllerProductCategory extends \iMega\Controller
             $data['button_continue'] = $this->language->get('button_continue');
             $data['button_list']     = $this->language->get('button_list');
             $data['button_grid']     = $this->language->get('button_grid');
-
-            $serviceBreadcrumb->append(
-                new Breadcrumb(
-                    $category_info['name'], $this->url->link('product/category', 'path=' . $this->request->get['path'])
-                )
-            );
 
             if ($category_info['image']) {
                 $data['thumb'] = $toolImage->resize(
@@ -205,11 +186,7 @@ class ControllerProductCategory extends \iMega\Controller
              */
             $catalog = $this->getContainer()->offsetGet(Service::CATALOG);
 
-            /*$catalog->setDescriptionLength(
-                $this->getConfig()->get($this->getConfig()->get('config_theme') . '_product_description_length')
-            );*/
-
-            $filter1->setCategoryId($catalog->getCurrentCategory());
+            $filter1->setCategoryId($catalog->getCurrentCategory()->getId());
 
             $items    = $catalog->getProducts($filter1);
             $products = $catalog->renderProducts($items);
@@ -245,7 +222,7 @@ class ControllerProductCategory extends \iMega\Controller
                     $price = false;
                 }
 
-                if ((float) $result['special']) {
+                if ((float)$result['special']) {
                     $special = $this->currency->format(
                         $this->tax->calculate(
                             $result['special'],
@@ -260,7 +237,7 @@ class ControllerProductCategory extends \iMega\Controller
 
                 if ($this->config->get('config_tax')) {
                     $tax = $this->currency->format(
-                        (float) $result['special'] ? $result['special'] : $result['price'],
+                        (float)$result['special'] ? $result['special'] : $result['price'],
                         $this->session->data['currency']
                     );
                 } else {
@@ -492,10 +469,15 @@ class ControllerProductCategory extends \iMega\Controller
 
             $data['continue'] = $this->url->link('common/home');
 
-            $data['breadcrumb'] = $serviceBreadcrumb->render();
-
-            //$this->response->setOutput($this->load->view('product/category', $data));
-            $this->response->setOutput($this->render('catalog/category.html.twig', ['products' => $products]));
+            $this->response->setOutput(
+                $this->render(
+                    'catalog/category.html.twig',
+                    [
+                        'products'   => $products,
+                        'title_page' => 'Title',
+                    ]
+                )
+            );
         } else {
             $url = '';
 
@@ -522,10 +504,6 @@ class ControllerProductCategory extends \iMega\Controller
             if (isset($this->request->get['limit'])) {
                 $url .= '&limit=' . $this->request->get['limit'];
             }
-
-            $serviceBreadcrumb->append(
-                new Breadcrumb($this->language->get('text_error'), $this->url->link('product/category', $url))
-            );
 
             $this->document->setTitle($this->language->get('text_error'));
 

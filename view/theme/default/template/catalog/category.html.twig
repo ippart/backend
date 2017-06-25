@@ -6,9 +6,12 @@
         {% include 'components/ads/partners.html.twig' %}
     </section>
     <section class="large-9 columns">
-        <section class="products">
+        <section class="products -mg-t-smx">
+            <nav>
+                {{ breadcrumbs() }}
+            </nav>
             <header class="text-center">
-                <h1 class="uppercase">sdfsdf</h1>
+                <h1 class="uppercase">{{ title_page }}</h1>
             </header>
             <section class="row large-up-3">
                 {{ products|raw }}
