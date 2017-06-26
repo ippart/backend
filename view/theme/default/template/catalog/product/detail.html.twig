@@ -1,0 +1,181 @@
+<article class="products">
+    <header class="text-center">
+        <h1 class="uppercase">{{ product.name|raw }}</h1>
+    </header>
+    <section class="row">
+        <section class="large-5 columns">
+            <div class="product-image-gallery">
+                <img class="pdp-product-image" id="main-product-image"
+                     src="http://placehold.it/350x350?text=Image+1" alt="">
+                <br>
+                <ul class="product-thumbs block-center">
+                    <li><a class="sim-thumb" data-image="http://placehold.it/350x350?text=Image+1"><img
+                                    src="http://placehold.it/50x50" alt=""></a></li>
+                    <li><a class="sim-thumb" data-image="http://placehold.it/350x350?text=Image+2"><img
+                                    src="http://placehold.it/50x50" alt=""></a></li>
+                    <li><a class="sim-thumb" data-image="http://placehold.it/350x350?text=Image+3"><img
+                                    src="http://placehold.it/50x50" alt=""></a></li>
+                </ul>
+            </div>
+        </section>
+        <section class="large-7 columns">
+            <section class="large-12 row">
+                <section class="large-12 columns">
+                    <h2>44,25<i class="fa fa-rub -mg-l-sm -mg-r-lgx" aria-hidden="true"></i>
+                        <small>от 10 шт.</small>
+                    </h2>
+                </section>
+                <section class="large-3 columns">
+                    <ul class="list-style-none -mg-l-zero">
+                        <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                        <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                        <li><a href=""><i class="fa fa-star" aria-hidden="true"></i></a></li>
+                        <li><a href=""><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
+                        <li><a href=""><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
+                    </ul>
+                </section>
+                <section class="large-9 columns">
+                    <span>3 Отзыва | <a href="#">Оставить отзыв</a></span>
+                </section>
+                <section class="large-12 columns">
+                    <p>Резонатор РГ05 10000кГц кварцевый, герметизированный. Номинальная частота 10000кГц.
+                        Точность настройки ±5%.</p>
+                    <section class="large-6 columns">Цена 1 шт</section>
+                    <section class="large-6 columns">53,10 руб.</section>
+                    <section class="large-6 columns">Цена >10 шт</section>
+                    <section class="large-6 columns">44,25 руб.</section>
+                    <section class="large-6 columns">Наличие</section>
+                    <section class="large-6 columns">33 (шт)</section>
+                    <section class="large-6 columns">Кратность отгрузки</section>
+                    <section class="large-6 columns">1</section>
+                    <section class="large-6 columns">Масса изделия, гр.</section>
+                    <section class="large-6 columns">1,4</section>
+                </section>
+                <section class="large-12 columns -mg-t-lgx">
+                    <div class="button-group-option" data-grouptype="ИЛИ">
+                        <a href="#" class="button success radius">Купить в 1 клик</a>
+                        <a href="#" class="button primary radius">Добавить в корзину</a>
+                    </div>
+                </section>
+                <section class="large-12 columns -mg-t-lgx">
+                    <ul class="list-style-none -mg-l-zero text-right">
+                        <li><a href=""><i class="-mg-l-sm fa-secondary fa fa-facebook-square fa-2x"
+                                          aria-hidden="true"></i></a></li>
+                        <li><a href=""><i class="-mg-l-sm fa-secondary fa fa-twitter-square fa-2x"
+                                          aria-hidden="true"></i></a></li>
+                        <li><a href=""><i class="-mg-l-sm fa-secondary fa fa-google-plus-square fa-2x"
+                                          aria-hidden="true"></i></a></li>
+                        <li><a href=""><i class="-mg-l-sm fa-secondary fa fa-share-alt-square fa-2x"
+                                          aria-hidden="true"></i></a></li>
+                        <li><a href=""><i class="-mg-l-sm fa-secondary fa fa-tumblr-square fa-2x"
+                                          aria-hidden="true"></i></a></li>
+                        <li><a href=""><i class="-mg-l-sm fa-secondary fa fa-pinterest-square fa-2x"
+                                          aria-hidden="true"></i></a></li>
+                        <li><a href=""><i class="-mg-l-sm fa-secondary fa fa-odnoklassniki-square fa-2x"
+                                          aria-hidden="true"></i></a></li>
+                    </ul>
+                </section>
+            </section>
+        </section>
+    </section>
+    <section class="large-12">
+        <ul class="tabs"
+            data-deep-link="true"
+            data-update-history="true"
+            data-deep-link-smudge="true"
+            data-deep-link-smudge="500"
+            data-tabs id="deeplinked-tabs">
+            <li class="tabs-title is-active"><a href="#panel1d" aria-selected="true">Описание</a></li>
+            <li class="tabs-title"><a href="#panel2d">Спецификация</a></li>
+            <li class="tabs-title"><a href="#panel3d">Документы</a></li>
+            <li class="tabs-title"><a href="#panel4d">Отзывы</a></li>
+        </ul>
+        <div class="tabs-content" data-tabs-content="deeplinked-tabs">
+            <div class="tabs-panel is-active" id="panel1d">
+                <div id="tab-description" class="tab-content" style="display: block;">
+                    {{ product.description|unescape|raw }}
+                </div>
+            </div>
+            <div class="tabs-panel" id="panel2d">
+                {{ dump(attributes) }}
+                {% for attr in attributes %}
+                    <div class="large-12 column">
+                        <div class="large-6">{{ attr.name }}</div>
+                        <div class="large-6">{{ attr.name }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="tabs-panel" id="panel3d">
+                <h2>Загрузка документов</h2>
+                <p>
+                    <button class="button hollow secondary large" type="button">
+                        <span class="show-for-sr">Close</span>
+                        <span aria-hidden="true"><i class="fa fa-file-pdf-o -mg-r-sm"></i>Datasheet _РГ05.pdf</span>
+                    </button>
+                </p>
+                <p>
+                    <button class="button hollow secondary large" type="button">
+                        <span class="show-for-sr">Close</span>
+                        <span aria-hidden="true"><i class="fa fa-file-pdf-o -mg-r-sm"></i>Datasheet_РГ05_2.pdf</span>
+                    </button>
+                </p>
+            </div>
+            <div class="tabs-panel" id="panel4d">
+                <ul class="list-style-none">
+                    <li class="orbit-slide">
+                        <div class="testimonial-slide row -mg-b-lgxxx">
+                            <div class="small-12 large-9 column">
+                                <div class="row align-middle testimonial-slide-content">
+                                    <div class="small-12 medium-4 column hide-for-small-only profile-pic">
+                                        <img
+                                                src="https://www.tm-town.com/assets/default_female600x600-3702af30bd630e7b0fa62af75cd2e67c.png">
+                                    </div>
+                                    <div class="small-12 medium-8 column testimonial-slide-text">
+                                        <p class="testimonial-slide-quotation">Hide when guests come over
+                                            instantly break
+                                            out into full speed gallop across the house for no reason mrow
+                                            touch water with
+                                            paw then recoil in horror.</p>
+                                        <div class="testimonial-slide-author-container">
+                                            <div class="small-profile-pic show-for-small-only">
+                                                <img src="http://placekitten.com/g/50/50">
+                                            </div>
+                                            <p class="testimonial-slide-author-info">Fleas Witherspoon<br><i
+                                                        class="subheader">Cat World Inc.</i></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="orbit-slide">
+                        <div class="testimonial-slide row -mg-b-lgxxx">
+                            <div class="small-12 large-9 column">
+                                <div class="row align-middle testimonial-slide-content">
+                                    <div class="small-12 medium-4 column hide-for-small-only profile-pic">
+                                        <img
+                                                src="http://www.kidzkutz.net/wp-content/uploads/2016/11/female_cartoon_avatar_by_ahninniah-d6fo72f.png">
+                                    </div>
+                                    <div class="small-12 medium-8 column testimonial-slide-text">
+                                        <p class="testimonial-slide-quotation">Hide when guests come over
+                                            instantly break
+                                            out into full speed gallop across the house for no reason mrow
+                                            touch water with
+                                            paw then recoil in horror.</p>
+                                        <div class="testimonial-slide-author-container">
+                                            <div class="small-profile-pic show-for-small-only">
+                                                <img src="http://placekitten.com/g/50/50">
+                                            </div>
+                                            <p class="testimonial-slide-author-info">Fleas Witherspoon<br><i
+                                                        class="subheader">Cat World Inc.</i></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</article>

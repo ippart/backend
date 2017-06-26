@@ -304,4 +304,13 @@ class Catalog
         return $raw;
     }
 
+    public function renderProduct(Product $product)
+    {
+        /**
+         * @var \Twig_Environment $render
+         */
+        $render = $this->c->offsetGet(Service::RENDER);
+
+        return $render->render('catalog/product/detail.html.twig', ['product' => $product]);
+    }
 }

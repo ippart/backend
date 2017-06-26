@@ -1,8 +1,11 @@
 <?php
-class ControllerProductProduct extends Controller {
+
+class ControllerProductProduct extends \iMega\Controller
+{
 	private $error = array();
 
-	public function index() {
+    public function index()
+    {
 		$this->load->language('product/product');
 
 		$data['breadcrumbs'] = array();
@@ -475,7 +478,23 @@ class ControllerProductProduct extends Controller {
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
 
-			$this->response->setOutput($this->load->view('product/product', $data));
+			//$this->response->setOutput($this->load->view('product/product', $data));
+
+            /**
+             * @var \iMega\Service\Catalog $catalog
+             */
+            $catalog = $this->getContainer()->offsetGet(\iMega\Service::CATALOG);
+
+            $product = $catalog->getProduct($product_id);
+
+            $this->response->setOutput(
+                $this->render(
+                    'catalog/product.html.twig',
+                    [
+                        'product' => $catalog->renderProduct($product),
+                    ]
+                )
+            );
 		} else {
 			$url = '';
 

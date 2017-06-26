@@ -35,6 +35,7 @@ class Extension extends \Twig_Extension
         return [
             new \Twig_SimpleFilter('short', [$this, 'short']),
             new \Twig_SimpleFilter('trans', [$this, 'trans']),
+            new \Twig_SimpleFilter('unescape', array($this, 'unescape'))
         ];
     }
 
@@ -86,6 +87,11 @@ class Extension extends \Twig_Extension
         $l = $this->c->offsetGet(Service::TRANSLATE);
 
         return $l->get($value);
+    }
+
+    public function unescape($value)
+    {
+        return html_entity_decode($value, ENT_QUOTES, 'UTF-8');
     }
 
     public function getName()
